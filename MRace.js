@@ -1157,7 +1157,7 @@ var MathRacing = (function() {
 			if (generatedQuestion[i].op != ' + ') {
 				questionString += generatedQuestion[i].x + generatedQuestion[i].op + generatedQuestion[i].y + ',';
 			} else {
-				questionString += generatedQuestion[i].x + ' + ' + generatedQuestion[i].y + ',';
+				questionString += generatedQuestion[i].x + ' plus ' + generatedQuestion[i].y + ',';
 			}
 			answerString += generatedQuestion[i].result + ',';
 			if (arrUA[i] == '') arrUA[i] = "No answer";
