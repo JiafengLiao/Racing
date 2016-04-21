@@ -444,16 +444,7 @@ var MathRacing = (function() {
 				result = x - y;
 				break;
 			case 3:
-				console.log('divide');
-				opText = ' / ';
-				while (result == 0 || result == 1) {
-					y = Math.round(Math.random() * (4 * DIFFICULTY) + 2);
-					result = Math.round((Math.random() * (max - min) + min) / y);
-				}
-				x = y * result;
-				break;
-			case 4:
-				console.log('mult');
+						console.log('mult');
 				opText = ' x ';
 				while (x == 0 || x == 1 || y == 1) {
 					result = Math.round(Math.random() * (max - min) + min);
@@ -463,6 +454,17 @@ var MathRacing = (function() {
 					result = x * y;
 				}
 				//result = x * y;
+				break;
+
+			case 4:
+				console.log('divide');
+				opText = ' / ';
+				while (result == 0 || result == 1) {
+					y = Math.round(Math.random() * (4 * DIFFICULTY) + 2);
+					result = Math.round((Math.random() * (max - min) + min) / y);
+				}
+				x = y * result;
+
 				break;
 		}
 		if (generatedQuestion.length > 0) {
@@ -1155,7 +1157,7 @@ var MathRacing = (function() {
 			if (generatedQuestion[i].op != ' + ') {
 				questionString += generatedQuestion[i].x + generatedQuestion[i].op + generatedQuestion[i].y + ',';
 			} else {
-				questionString += generatedQuestion[i].x + ' p ' + generatedQuestion[i].y + ',';
+				questionString += generatedQuestion[i].x + ' + ' + generatedQuestion[i].y + ',';
 			}
 			answerString += generatedQuestion[i].result + ',';
 			if (arrUA[i] == '') arrUA[i] = "No answer";
