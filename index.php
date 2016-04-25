@@ -71,8 +71,8 @@ if(isset($_POST['submit'])){
 			//send email
 			$to = $_POST['email'];
 			$subject = "Registration Confirmation";
-			$body = "<p>Thank you for registering at demo site.</p>
-			<p>To activate your account, please click on this link: <a href='".DIR."activate.php?x=$id&y=$activasion'>".DIR."activate.php?x=$id&y=$activasion</a></p>
+			$body = "<p>Thank you for registering at Math Racing.</p>
+			<p>To login, please click on this link: <a href='".DIR."activate.php?x=$id&y=$activasion'>".DIR."activate.php?x=$id&y=$activasion</a></p>
 			<p>Regards Site Admin</p>";
 
 			$mail = new Mail();
@@ -96,7 +96,7 @@ if(isset($_POST['submit'])){
 }
 
 //define page title
-$title = 'Demo';
+$title = 'Login and Register';
 
 //include header template
 require('layout/header.php');
@@ -126,7 +126,16 @@ require('layout/header.php');
 					echo "<h2 class='bg-success'>Registration successful, please check your email to activate your account.</h2>";
 				}
 				?>
+							<label>Account Type</label>
 
+						  <div class="accounttype">
+                                <select>
+                                  <option id="student"value="student">Student</option>
+                                  <option id="teacher"value="teacher">Teacher</option>
+                                  <option id="parent"value="parent">Parent</option>
+                                </select>
+                                </div>
+                                <br></br>
 				<div class="form-group">
 					<input type="text" name="username" id="username" class="form-control input-lg" placeholder="User Name" value="<?php if(isset($error)){ echo $_POST['username']; } ?>" tabindex="1">
 				</div>
@@ -138,6 +147,7 @@ require('layout/header.php');
 						<div class="form-group">
 							<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="3">
 						</div>
+
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6">
 						<div class="form-group">
