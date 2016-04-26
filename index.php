@@ -59,11 +59,13 @@ if(isset($_POST['submit'])){
 		try {
 
 			//insert into database with a prepared statement
-			$stmt = $db->prepare('INSERT INTO members (username,password,email,active) VALUES (:username, :password, :email, :active)');
+			$stmt = $db->prepare('INSERT INTO members (username,password,email,active,parentOf,type) VALUES (:username, :password, :email, :active, :childname, :acctype)');
 			$stmt->execute(array(
 				':username' => $_POST['username'],
 				':password' => $hashedpassword,
 				':email' => $_POST['email'],
+				':childname' => $_POST['childname'],
+				':acctype' => $_POST['accounttype'],
 				':active' => Yes
 			));
 			$id = $db->lastInsertId('memberID');
@@ -123,14 +125,14 @@ require('layout/header.php');
 
 				//if action is joined show sucess
 				if(isset($_GET['action']) && $_GET['action'] == 'joined'){
-					echo "<h2 class='bg-success'>Registration successful, please check your email to activate your account.</h2>";
+					echo "<h2 class='bg-success'>Registration successful, please Login.</h2>";
 				}
 				?>
 							<label>Account Type</label>
 
 						  <div class="accounttype">
-                                <select>
-                                  <option id="student"value="student">Student</option>
+                                <select name="accounttype" id="accounttype">
+                                  <option id="student"value="student" selected="selected">Student</option>
                                   <option id="teacher"value="teacher">Teacher</option>
                                   <option id="parent"value="parent">Parent</option>
                                 </select>
@@ -155,7 +157,9 @@ require('layout/header.php');
 						</div>
 					</div>
 				</div>
-
+				<div class="form-group">
+					<input type="text" name="childname" id="childname" class="form-control input-lg" placeholder="Children Username (Optional)" value="<?php if(isset($error)){ echo $_POST['childname']; } ?>" tabindex="1">
+				</div>
 				<div class="row">
 					<div class="col-xs-6 col-md-6"><input type="submit" name="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="5"></div>
 				</div>
